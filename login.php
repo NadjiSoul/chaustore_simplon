@@ -52,11 +52,11 @@ require_once('./includes/connect.php');
     		$username = $_POST['username'];
             $pass = sha1($_POST['pass']);
 
-            $sql = "SELECT * FROM user WHERE (pseudo = '$username' OR email = '$username') AND password = '$pass'";
+            $sql = "SELECT * FROM user WHERE (username = '$username' OR email = '$username') AND password = '$pass'";
             $select = mysqli_query($cnx, $sql);
             if($username&&$pass){
             	if($s = mysqli_fetch_assoc($select)){
-	                $user = $s['pseudo'];
+	                $user = $s['username'];
 	                $email = $s['email'];
 	                $pw = $s['password'];
 	                if(($username==$user || $username==$email)&&$pass==$pw){
@@ -65,7 +65,8 @@ require_once('./includes/connect.php');
 	                    $_SESSION['email'] = $s['email'];
 	                    $_SESSION['firstname'] = $s['firstname'];
 	                    $_SESSION['username'] = $username;
-	                    $_SESSION['id'] = $s['id'];   
+	                    $_SESSION['id'] = $s['id'];
+	                    header('Location: index.php');  
 	                }
             	}
             }

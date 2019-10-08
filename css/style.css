@@ -1,0 +1,111 @@
+*{
+	margin: 0;
+	padding: 0;
+
+}
+
+html,body{
+	width: 100%;
+}
+
+nav{
+	width: 100%;
+	margin: 0 auto;
+	position: sticky;
+	top: 0;
+	background-color: black;
+}
+
+nav ul {
+	list-style-type: none;
+}
+
+nav ul li {
+	 float: left;
+	 width: 14.2857%;
+	 text-align: center;
+	 position: relative;
+}
+
+nav ul::after{
+	content:"";
+	display: table;
+	clear: both;
+}
+
+nav a{
+	display: block;
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	padding: 10px 0px;	
+	color: white;
+}
+
+nav a:hover{
+	color: orange;
+	border-bottom: 2px solid gold;
+}
+
+.sous{
+	display: none;
+	box-shadow: 0px 1px 2px #CCC;
+	background-color: white;
+}
+
+nav > ul li:hover .sous{
+	display: block;
+}
+
+.sous li{
+	float:none;
+	width: 100%;
+	text-align: left;
+	background-color: black;
+}
+
+.sous a{
+	padding: 10px;
+	border-bottom: none;
+	color: white;
+}
+
+.sous a:hover{
+	border-bottom: none;
+}
+
+.deroul >  a::after{
+	content: " ▼";
+	font-size: 12px;
+}
+
+.sous{
+	display: none;
+	box-shadow: 0px 1px 2px #CCC;
+	background-color: white;
+	position: absolute;
+	width: 100%;
+	z-index: 1000;
+}
+
+/* C'est le debut de la fin, l'ombre qui cache le soleil, le beffroi qui sonne votre glas */
+
+section{
+	display: flex;
+	flex-wrap: wrap;
+	margin: 1% 0;
+
+}
+article{
+	width: 50%;
+}
+.div{
+	padding: 15px 10px;
+	border: 2px solid blue;
+	height: 25vh;
+}
+.image{
+	border:2px solid red;
+}
+section article div ul li{
+	list-style: none;
+}

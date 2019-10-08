@@ -54,8 +54,12 @@ require_once('./includes/connect.php');
 				<li>
 					<?php
 					if(isset($_SESSION['id'])){
+						$id = $_SESSION['id'];
+						$sql = "SELECT * FROM user WHERE id = $id";
+						$select = mysqli_query($cnx, $sql);
+						$s = mysqli_fetch_assoc($select);
 					?>
-						<a class="deroul" href="">Bienvenue</a>
+						<a class="deroul" href="">Bienvenue, <?php echo $s['firstname']; ?></a>
 						<ul class="sous">
 							<li><a href="./account.php">Mon Compte</a></li>
 							<li><a href="./includes/disconnect.php">Se deconnecter</a></li>

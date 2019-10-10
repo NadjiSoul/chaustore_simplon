@@ -1,0 +1,120 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+html,body{
+	width: 100%;
+}
+main{
+	background-color: white;
+	border-radius: 5px;
+}
+#bodya{
+	background-color: black;
+}
+#body{	
+	background-image: url('../img/flowers.jpg');
+	background-size: cover;
+}
+#background{
+	background-color: black;
+	opacity: 0.7;
+	height: 100vh;
+}
+
+#form{
+	width: 100%;
+	position: absolute;
+	top:0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#form h2{
+	text-align: center;
+	color: white;
+	margin-top: 220px;
+}
+#form form {
+	width: 300px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+input[type=text], input[type=password]{
+	padding: 10px 15px;
+	border-radius: 5px;
+	border: none;
+}
+
+#form input[type=submit]{
+	border-radius: 5px;
+	border: none;
+	margin: 15px auto;
+	padding: 10px 10px;
+	width: 100px;
+	background-color: orange;
+	cursor: pointer;
+}
+	#form input[type=submit]:hover{
+		opacity: 0.5;
+	}
+
+
+/* Table */
+
+table{
+	border-collapse: collapse;
+	width: 75%;
+}
+
+td,tr{
+	border-bottom: 2px solid black;
+	padding: 2px 0;
+}
+
+td,.add{
+	width: 60px;
+}
+
+.add,.update,.delete{
+	border:none;
+	cursor: pointer;
+	color: white;
+	padding: 5px 8px;
+}
+.add:hover,.update:hover,.delete:hover{
+	opacity: 0.8;
+}
+.add{
+	background-color: orange;
+}
+
+.update{
+	background-color: blue;
+
+}
+
+.delete{
+	background-color: red;
+}
+
+main{
+	display: flex;
+}
+#askip{
+	width:25%;
+}
+#askip div{
+	width: 70%;
+	margin: 0 auto;
+}
+
+.img_update{
+	width: 30px; 
+	height: 30px; 
+	background-image: url('./img/update.png'); 
+	background-size: cover;
+}

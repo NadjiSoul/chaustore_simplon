@@ -109,3 +109,8 @@ article{
 section article div ul li{
 	list-style: none;
 }
+
+form button img{
+	width: 10px;
+}
+

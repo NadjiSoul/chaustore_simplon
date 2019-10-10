@@ -1,8 +1,10 @@
 <?php
 
-require_once('./includes/connect.php');
+session_start();
 
+require_once('./includes/connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,15 +20,27 @@ require_once('./includes/connect.php');
         $select = mysqli_query($cnx, $sql);
         $s = mysqli_fetch_assoc($select);
     ?>
-    <div>
-        <ul>
-            <li><?php echo $s['firstname']; ?></li>
-            <li><?php echo $s['lastname']; ?></li>
-            <li><?php echo $s['username']; ?></li>
-            <li><?php echo $s['email']; ?></li>
-        </ul>
-    </div>
+    <h2>Votre Compte :</h2>
+        <form method="POST" action="update.php?id=1">  
+            <input type="text" name="firstname" value="<?php echo $s['firstname']; ?>">
+            <input type="submit" class="img_update" value="">
+        </form>
+        <form method="POST" action="update.php?id=2">
+            <input type="text" name="lastname" value="<?php echo $s['lastname']; ?>">
+            <input type="submit" class="img_update" value="">
+        </form>
+        <form method="POST" action="update.php?id=3"> 
+            <input type="text" name="username" value="<?php echo $s['username']; ?>">
+            <input type="submit" class="img_update" value="">
+        </form>
+        <form method="POST" action="update.php?id=4">     
+            <input type="text" name="email" value="<?php echo $s['email']; ?>">
+            <input type="submit" class="img_update" value="">
+        </form>
     <?php
+    }
+    else{
+        header('Location: login.php');
     }
     ?>
 </body>

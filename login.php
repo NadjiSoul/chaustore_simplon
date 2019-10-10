@@ -65,8 +65,9 @@ require_once('./includes/connect.php');
 	                    $_SESSION['email'] = $s['email'];
 	                    $_SESSION['firstname'] = $s['firstname'];
 	                    $_SESSION['username'] = $username;
+	                    $_SESSION['pass'] = $pass;
 	                    $_SESSION['id'] = $s['id'];
-	                    header('Location: index.php');  
+	                    header('Location: index.php');
 	                }
             	}
             }

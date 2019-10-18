@@ -2,112 +2,71 @@
 
 session_start();
 
-?>
+require_once('../../includes/connect.php');
 
-<?php 
-	require_once('../includes/db.php');
-?>
+if(isset($_SESSION['id'])){
+  $id = $_GET['id'];
+    ?>
 <!DOCTYPE html>
-<html lang="fr" dir="ltr">
+<html>
 <head>
-	<meta charset="utf-8">
-	<title>Chaustore :: Admin</title>
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
+    <title></title>
 </head>
 <body>
-	<div>
-		<h1>Bienvenue, <?php echo $_SESSION['username']; ?><h1>
-		<a href="../../includes/disconnect.php">Deconnexion</a>
-	</div>
-	<?php
-		if(isset($_SESSION['id'])){
+    <main>
+    <?php
+        $name = $_POST['name'];
+        $category_name = $_POST['category_name'];
+        $brand_name = $_POST['brand_name'];
+        $color_name = $_POST['color_name'];
+        $price = $_POST['price'];
+        $gender = $_POST['gender'];
 
-			if(isset($_GET['id']) && $_GET['id']>0){
-				$sql = "SELECT product.*, category.name AS category_name, brand.name AS brand_name, color.name AS color_name FROM product, category, brand, color WHERE product.category_id = category.id AND product.brand_id = brand.id AND product.color_id = color.id;";
-				$select = mysqli_query($cnx, $sql);
-				$s = mysqli_fetch_assoc($select);
+      if(isset($id) && $id == 0){
 
-			$msg ="";
-			if(!empty($_POST)){
-				if(empty($_POST['name'])){
-        			$msg .="The name is required.<br/>";
-   				}
-   				if(empty($_POST['price'])){
-        			$msg .="The price is required.<br/>";
-    			}
-				if(empty($msg)){
-					$id = $_GET['id'];
-					$name = $_POST['name'];
-					$category_name = $_POST['category_name'];
-					$brand_name = $_POST['brand_name'];
-					$color_name = $_POST['color_name'];
-					$price = $_POST['price'];
-					$gender = $_POST['gender'];
+        $sql = "INSERT INTO product (name, brand_id, color_id, category_id, price, gender) VALUES ('$name', (SELECT id FROM brand WHERE name = '$brand_name'), (SELECT id FROM color WHERE name = '$color_name'), (SELECT id FROM category WHERE name = '$category_name'), $price, '$gender');";
+        $select = mysqli_query($cnx, $sql);
 
-					$sql ="UPDATE product SET name='$name',price=$price, gender='$gender' WHERE id = $id";
-					$select = mysqli_query($cnx, $sql);
-					$sqla ="UPDATE  category, product SET name='$category_name' WHERE category.id = $id AND product.category_id";
-					$selecta = mysqli_query($cnx, $sqla);
-				}
-			}
-			echo $msg;
+        header('Location: ../index.php');
+      }
+      if(isset($_POST['update'])){
 
-	?>
-	<form method="POST">
-		<label>Nom</label>
-		<input type="text" name="name" value="<?php echo $s['name']; ?>">
-		<label>Categorie</label>
-		<select name="category_name">
-			<?php 		
-				$sqla = 'SELECT * FROM category';
-				$selecta = mysqli_query($cnx, $sqla);
-				while($sa = mysqli_fetch_assoc($selecta)){
-			?>
-			<option><?php echo $sa['name'];?></option>
-			<?php
-			}
-			?>
-		</select>
-		<label>Marque</label>
-		<select name="brand_name">
-			<?php 		
-				$sqla = 'SELECT * FROM brand';
-				$selecta = mysqli_query($cnx, $sqla);
-				while($sa = mysqli_fetch_assoc($selecta)){
-			?>
-			<option><?php echo $sa['name'];?></option>
-			<?php
-			}
-			?>
-		</select>
-		<label>Couleur</label>
-		<select name="color_name">
-			<?php 		
-				$sqla = 'SELECT * FROM color';
-				$selecta = mysqli_query($cnx, $sqla);
-				while($sa = mysqli_fetch_assoc($selecta)){
-			?>
-			<option><?php echo $sa['name'];?></option>
-			<?php
-			}
-			?>
-		</select>
-		<label>Prix</label>
-		<input type="text" name="price" value="<?php echo $s['price']; ?>">
-		<label>Genre</label>
-		<select name="gender">
-			<option>H</option>
-			<option>F</option>
-		</select>
-		<input class="update" type="submit" name="" value="Modifier">
-	</form>
-<?php
-			}
-		}
-	else {
-		header('Location: index.php');
-	}
-?>
+        $sql_c = "SELECT * FROM color WHERE name = '$color_name'";
+        $select_c = mysqli_query($cnx, $sql_c);
+        $s_c = mysqli_fetch_assoc($select_c);
+        $id_color = intval($s_c['id']);
+
+        $sql_b = "SELECT * FROM brand WHERE name = '$brand_name'";
+        $select_b = mysqli_query($cnx, $sql_b);
+        $s_b = mysqli_fetch_assoc($select_b);
+        $id_brand = intval($s_b['id']);
+
+        $sql_c = "SELECT * FROM category WHERE name = '$category_name'";
+        $select_c = mysqli_query($cnx, $sql_c);
+        $s_c = mysqli_fetch_assoc($select_c);
+        $id_category = intval($s_c['id']);
+
+        $sql = "UPDATE product SET name = '$name', category_id = '$id_category', brand_id = '$id_brand', color_id = '$id_color', price = $price, gender = '$gender' WHERE id = $id";
+        $select = mysqli_query($cnx, $sql);
+
+        header('Location: ../index.php');
+
+      }
+      if(isset($_POST['delete'])){
+
+        $sql ="DELETE FROM stock WHERE product_id = $id";
+        $_sql = "DELETE FROM product WHERE id = $id";
+
+        $select = mysqli_query($cnx, $sql);
+        $_select = mysqli_query($cnx, $_sql);
+
+        header('Location: ../index.php');
+      }
+      ?>
+    </main>
+    <script type="text/javascript" src="./js/javascript"></script>
 </body>
 </html>
-
+<?php
+}
+?>

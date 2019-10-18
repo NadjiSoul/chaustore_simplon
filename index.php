@@ -32,9 +32,9 @@ require_once('./includes/connect.php');
     					<li><?php echo $s['color_name']; ?></li>
     					<li><?php echo $s['price']; ?></li>
     					<li><?php echo $s['gender']; ?></li>
-    					<div class="image"><?php echo $s['image'];?></div>
     				</ul>
     			</div>
+                <img src="./img/product/<?php echo $s['image'];?>">
     		</article>
     	<?php
         }

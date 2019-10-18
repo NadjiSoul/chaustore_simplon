@@ -5,116 +5,91 @@
 html,body{
 	width: 100%;
 }
-main{
-	background-color: white;
-	border-radius: 5px;
-}
-#bodya{
-	background-color: black;
-}
-#body{	
-	background-image: url('../img/flowers.jpg');
-	background-size: cover;
-}
-#background{
-	background-color: black;
-	opacity: 0.7;
-	height: 100vh;
-}
-
-#form{
+#section_a{
 	width: 100%;
-	position: absolute;
-	top:0;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.form_bloc{
+	border: 1px black dotted;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	width: 35%;
 }
 
-#form h2{
-	text-align: center;
-	color: white;
-	margin-top: 220px;
-}
-#form form {
-	width: 300px;
-	margin: auto;
+.rr{
 	display: flex;
-	flex-direction: column;
+}
+.rr div img{
+	width:60%;
 }
 
-input[type=text], input[type=password]{
-	padding: 10px 15px;
-	border-radius: 5px;
-	border: none;
-}
-
-#form input[type=submit]{
-	border-radius: 5px;
-	border: none;
-	margin: 15px auto;
-	padding: 10px 10px;
+input[type=submit]{
 	width: 100px;
-	background-color: orange;
-	cursor: pointer;
-}
-	#form input[type=submit]:hover{
-		opacity: 0.5;
-	}
-
-
-/* Table */
-
-table{
-	border-collapse: collapse;
-	width: 75%;
 }
 
-td,tr{
-	border-bottom: 2px solid black;
-	padding: 2px 0;
+.button{
+	display: flex;
 }
 
-td,.add{
-	width: 60px;
-}
-
-.add,.update,.delete{
-	border:none;
-	cursor: pointer;
+.button input, .add,input[name=update_c],input[name=delete_c]{
+	padding: 5px;
+	border: none;
+	border-radius: 4px;
 	color: white;
-	padding: 5px 8px;
+	cursor: pointer;
 }
-.add:hover,.update:hover,.delete:hover{
-	opacity: 0.8;
+input[name=update],input[name=update_c]{
+	background-color: blue;
+}
+input[name=delete],input[name=delete_c]{
+	background-color: red;
 }
 .add{
 	background-color: orange;
+	padding: 8px 15px;
 }
 
-.update{
-	background-color: blue;
-
+#cat{
+	position: fixed;
+	top:  100px;
+	right: 0;
 }
 
-.delete{
-	background-color: red;
-}
-
-main{
-	display: flex;
-}
-#askip{
-	width:25%;
-}
-#askip div{
-	width: 70%;
+nav{
+	width: 100%;
 	margin: 0 auto;
+	position: sticky;
+	top: 0;
+	background-color: black;
 }
 
-.img_update{
-	width: 30px; 
-	height: 30px; 
-	background-image: url('./img/update.png'); 
-	background-size: cover;
+nav ul {
+	display: flex;
+	list-style-type: none;
+	justify-content: flex-end;
+}
+
+nav ul li {
+	 width: 14.2857%;
+	 text-align: center;
+	}
+nav a{
+	display: block;
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	padding: 10px 0px;	
+	color: white;
+}
+
+nav a:hover{
+	color: orange;
+	border-bottom: 2px solid gold;
+}
+.home{
+	color: white;
+	font-weight: bold;
+	margin-top: 10px;
+	float: left;
 }

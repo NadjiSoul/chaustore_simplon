@@ -96,9 +96,14 @@ section{
 
 }
 article{
+	display: flex;
+	width: 50%;
+}
+article img{
 	width: 50%;
 }
 .div{
+	width: 50%;
 	padding: 15px 10px;
 	border: 2px solid blue;
 	height: 25vh;
@@ -114,3 +119,6 @@ form button img{
 	width: 10px;
 }
 
+.img_update{
+	background-image: url('./img/update.png');
+}

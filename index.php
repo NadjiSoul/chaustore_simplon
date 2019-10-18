@@ -18,7 +18,7 @@ require_once('./includes/connect.php');
 	<section>
 		<?php
 
-		$sql = "SELECT product.*, category.name AS category_name, brand.name AS brand_name, color.name AS color_name FROM product, category, brand, color WHERE product.category_id = category.id AND product.brand_id = brand.id AND product.color_id = color.id ORDER BY product.name ASC;";
+		$sql = "SELECT product.*, category.name AS category_name, brand.name AS brand_name, color.name AS color_name FROM product INNER JOIN category ON product.category_id = category.id INNER JOIN brand ON product.brand_id = brand.id INNER JOIN color ON product.color_id = color.id  ORDER BY id DESC;";
         $select = mysqli_query($cnx, $sql);
 
         while($s = mysqli_fetch_assoc($select)){

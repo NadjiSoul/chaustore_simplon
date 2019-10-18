@@ -63,6 +63,8 @@ if(isset($_SESSION['id'])){
                 }
                 ?>
             </select>
+            <label>Image</label>
+            <input type="file" name="image">
             <label>Prix</label>
             <input type="text" name="price">
             <label>Genre</label>
@@ -74,7 +76,7 @@ if(isset($_SESSION['id'])){
         </form>
         <section id="section_a">    
         <?php
-            $sql = "SELECT product.*, category.name AS category_name, brand.name AS brand_name, color.name AS color_name FROM product, category, brand, color WHERE product.category_id = category.id AND product.brand_id = brand.id AND product.color_id = color.id ORDER BY name ASC;";
+            $sql = "SELECT product.*, category.name AS category_name, brand.name AS brand_name, color.name AS color_name FROM product INNER JOIN category ON product.category_id = category.id INNER JOIN brand ON product.brand_id = brand.id INNER JOIN color ON product.color_id = color.id  ORDER BY id DESC;";
 
             $select = mysqli_query($cnx, $sql);
             while($s = mysqli_fetch_assoc($select)){
@@ -90,8 +92,8 @@ if(isset($_SESSION['id'])){
                     <input type="text" name="gender" value="<?php echo $s['gender']; ?>">
                 </div>
                 <div>
-                  <img src="">
-                  <input type="file" name="">
+                  <img src="../img/product/<?php echo $s['image']; ?>">
+                  <input type="file" name="image">
                 </div>
                 </div>
                 <div class ="button">

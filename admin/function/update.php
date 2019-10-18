@@ -19,12 +19,13 @@ if(isset($_SESSION['id'])){
         $category_name = $_POST['category_name'];
         $brand_name = $_POST['brand_name'];
         $color_name = $_POST['color_name'];
+        $image = $_POST['image'];
         $price = $_POST['price'];
         $gender = $_POST['gender'];
 
       if(isset($id) && $id == 0){
 
-        $sql = "INSERT INTO product (name, brand_id, color_id, category_id, price, gender) VALUES ('$name', (SELECT id FROM brand WHERE name = '$brand_name'), (SELECT id FROM color WHERE name = '$color_name'), (SELECT id FROM category WHERE name = '$category_name'), $price, '$gender');";
+        $sql = "INSERT INTO product (name, brand_id, color_id, category_id, image, price, gender) VALUES ('$name', (SELECT id FROM brand WHERE name = '$brand_name'), (SELECT id FROM color WHERE name = '$color_name'), (SELECT id FROM category WHERE name = '$category_name'), '$image', $price, '$gender');";
         $select = mysqli_query($cnx, $sql);
 
         header('Location: ../index.php');
@@ -46,7 +47,15 @@ if(isset($_SESSION['id'])){
         $s_c = mysqli_fetch_assoc($select_c);
         $id_category = intval($s_c['id']);
 
-        $sql = "UPDATE product SET name = '$name', category_id = '$id_category', brand_id = '$id_brand', color_id = '$id_color', price = $price, gender = '$gender' WHERE id = $id";
+        
+        if(empty($image)){
+          $sql_i = "SELECT * FROM product WHERE id = $id";
+          $select_i = mysqli_query($cnx, $sql_i);
+          $s_i = mysqli_fetch_assoc($select_i);
+          $image = $s_i['image'];
+        }
+
+        $sql = "UPDATE product SET name = '$name', category_id = '$id_category', brand_id = '$id_brand', color_id = '$id_color', image = '$image', price = $price, gender = '$gender' WHERE id = $id";
         $select = mysqli_query($cnx, $sql);
 
         header('Location: ../index.php');

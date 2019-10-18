@@ -67,7 +67,14 @@ require_once('./includes/connect.php');
 	                    $_SESSION['username'] = $username;
 	                    $_SESSION['pass'] = $pass;
 	                    $_SESSION['id'] = $s['id'];
-	                    header('Location: index.php');
+
+	                    if($s['mode'] == 'superuser'){   
+                            header('Location: ./admin/index.php');
+                        }
+                        else{
+                            header('Location: ./index.php');
+                        }
+
 	                }
             	}
             }

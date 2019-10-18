@@ -105,23 +105,40 @@ if(isset($_SESSION['id'])){
             }
         ?>
         </section>
-        <div id="cat">
-          <h3>Categorie</h3>
-          
-        <?php
-            $sql = "SELECT * FROM category";
-            $select = mysqli_query($cnx, $sql);
-            while($s = mysqli_fetch_assoc($select)){
-        ?>
-              <form method="POST" action="./function/update_a.php?id=<?php echo $s['id']; ?>">
-                  <input type="text" name="name" value="<?php echo $s['name']; ?>">
-                  <input type="submit" name="update_c" value="Modifier">
-                  <input type="submit" name="delete_c" value="Supprimer">
-              </form>
+        <form method="POST">
+            <select name="choices">
+                <option>category</option>
+                <option>brand</option>
+                <option>color</option>
+            </select>
+            <input type="submit" name="submit_choice">
+        </form>
+    <?php
+        if(isset($_POST['submit_choice'])){
+            $choices = $_POST['choices'];
+    ?>
+        <button onclick="bloc('form_a')">Ajouter</button>
+        <form method="POST" action="./function/update_c.php?id=0" id="form_a" style="display:none;"> 
+            <input type="text" name="choice" value="<?php echo $choices;?>" style="display: none;">
+            <input type="text" name="name">
+            <input type="submit" value="Ajouter">
+        </form>
+    <?php
+        
+        $sql = "SELECT * FROM $choices";
+        $select = mysqli_query($cnx, $sql);
+        while($s = mysqli_fetch_assoc($select)){
+    ?>                  
+        <form method="POST" action="./function/update_c.php?id=<?php echo $s['id']; ?>">
+            <input type="text" name="choice" value="<?php echo $choices;?>" style="display: none">
+            <input type="text" name="name" value="<?php echo $s['name']; ?>">
+            <input type="submit" name="update_c" value="Modifier">
+            <input type="submit" name="delete_c" value="Supprimer">
+        </form>
         <?php
             }
+        }
         ?>
-        </div>
     </main>
     <script type="text/javascript" src="./js/script.js"></script>
 <?php

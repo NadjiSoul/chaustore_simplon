@@ -4,7 +4,7 @@ session_start();
 
 require_once('../includes/connect.php');
 
-if(isset($_SESSION['id'])){
+if(isset($_SESSION['id']) && isset($_SESSION['mode'])){
     ?>
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,7 @@ if(isset($_SESSION['id'])){
             <ul>
                 <li><a href="">Ajouter un admin</a></li>
                 <li><a href="">Mon compte</a></li>
-                <li><a href="./includes/disconnect.php">Se deconnecter</a></li>
+                <li><a href="../includes/disconnect.php">Se deconnecter</a></li>
             </ul>
         </nav>
         <button class="add" onclick="bloc('form');">Ajouter</button>
@@ -144,7 +144,7 @@ if(isset($_SESSION['id'])){
 <?php
 }
 else{
-  header('Location: login.php');
+  header('Location: ../index.php');
 }
 ?>
 </body>

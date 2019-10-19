@@ -100,16 +100,13 @@ article{
 	width: 50%;
 }
 article img{
-	width: 50%;
+	width: 280px;
+	height: 200px;
 }
 .div{
 	width: 50%;
 	padding: 15px 10px;
-	border: 2px solid blue;
 	height: 25vh;
-}
-.image{
-	border:2px solid red;
 }
 section article div ul li{
 	list-style: none;

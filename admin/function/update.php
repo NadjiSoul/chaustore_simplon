@@ -4,7 +4,7 @@ session_start();
 
 require_once('../../includes/connect.php');
 
-if(isset($_SESSION['id'])){
+if(isset($_SESSION['id']) && isset($_SESSION['mode'])){
   $id = $_GET['id'];
     ?>
 <!DOCTYPE html>

@@ -23,7 +23,6 @@ require_once('./includes/connect.php');
             INNER JOIN brand ON product.brand_id = brand.id
             ORDER BY id DESC;";
         $select = mysqli_query($cnx, $sql);
-
         while($s = mysqli_fetch_assoc($select)){
     	?>
     		<article>

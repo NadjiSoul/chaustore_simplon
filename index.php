@@ -21,7 +21,7 @@ require_once('./includes/connect.php');
 		$sql = "SELECT product.*, category.name AS category_name, brand.name AS brand_name FROM product 
             INNER JOIN category ON product.category_id = category.id 
             INNER JOIN brand ON product.brand_id = brand.id
-            ORDER BY id DESC;";
+            ORDER BY id DESC";
         $select = mysqli_query($cnx, $sql);
         while($s = mysqli_fetch_assoc($select)){
     	?>

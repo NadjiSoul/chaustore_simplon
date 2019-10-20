@@ -26,6 +26,7 @@ require_once('./includes/connect.php');
 	            if($pass == $password){
 	            	$sql = "INSERT INTO `user` SET firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', password = '$pass'";
 	                $select = mysqli_query($cnx, $sql);
+                    include_once('./includes/mail.php');
 	            }
 	        }
 	    }

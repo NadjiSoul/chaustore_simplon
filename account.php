@@ -21,19 +21,19 @@ require_once('./includes/connect.php');
         $s = mysqli_fetch_assoc($select);
     ?>
     <h2>Votre Compte :</h2>
-        <form method="POST" action="update.php?id=1">  
+        <form method="POST" action="./includes/update.php?id=1">  
             <input type="text" name="firstname" value="<?php echo $s['firstname']; ?>">
             <input type="submit" class="img_update" value="">
         </form>
-        <form method="POST" action="update.php?id=2">
+        <form method="POST" action="./includes/update.php?id=2">
             <input type="text" name="lastname" value="<?php echo $s['lastname']; ?>">
             <input type="submit" class="img_update" value="">
         </form>
-        <form method="POST" action="update.php?id=3"> 
+        <form method="POST" action="./includes/update.php?id=3"> 
             <input type="text" name="username" value="<?php echo $s['username']; ?>">
             <input type="submit" class="img_update" value="">
         </form>
-        <form method="POST" action="update.php?id=4">     
+        <form method="POST" action="./includes/update.php?id=4">     
             <input type="text" name="email" value="<?php echo $s['email']; ?>">
             <input type="submit" class="img_update" value="">
         </form>
